@@ -9,7 +9,21 @@ public class Locacao {
     private Long id;
     private String cpf;
     private String cnpj;
-    private Date dataLocacao;
+    private String data;
+
+    public Locacao(Long id, String cpf, String cnpj, String data) {
+        this.id = id;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.data = data;
+    }
+
+    public Locacao(String cpf, String cnpj, String data) {
+        super();
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.data = data;
+    }
 
     public Long getId(){
         return id;
@@ -36,12 +50,12 @@ public class Locacao {
         this.cnpj = cnpj;
     }
 
-    public Date getDataLocacao(){
-        return dataLocacao;
+    public String getData(){
+        return data;
     }
 
-    public void setDataLocacao(Date dataLocacao){
-        this.dataLocacao = dataLocacao;
+    public void setData(String data){
+        this.data = data;
     }
 
 }
