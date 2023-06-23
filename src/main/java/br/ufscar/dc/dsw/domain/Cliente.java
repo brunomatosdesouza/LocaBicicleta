@@ -4,37 +4,17 @@ import java.util.Date;
 
 public class Cliente extends Usuario{
 
-    private Long id;
-    private String email;
-    private String senha;
     private String cpf;
-    private String nome;
-    private Long telefone;
+    private String telefone;
     private char sexo;
-    private Date dataNascimento;
+    private String dataNascimento;
 
-    public Long getId(){
-        return id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
-
-    public String getSenha(){
-        return senha;
-    }
-
-    public void setSenha(String senha){
-        this.senha = senha;
+    public Cliente(String cpf, String telefone, char sexo, String dataNascimento){
+        Usuario(email, senha, nome, "admin");
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
     }
 
     public String getCpf(){
@@ -45,19 +25,11 @@ public class Cliente extends Usuario{
         this.cpf = cpf;
     }
 
-    public String getNome(){
-        return nome;
-    }
-
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-
-    public Long getTelefone(){
+    public String getTelefone(){
         return telefone;
     }
 
-    public void setTelefone(Long telefone){
+    public void setTelefone(String telefone){
         this.telefone = telefone;
     }
 
@@ -69,11 +41,11 @@ public class Cliente extends Usuario{
         this.sexo = sexo;
     }
 
-    public Date getDataNascimento(){
+    public String getDataNascimento(){
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento){
+    public void setDataNascimento(String dataNascimento){
         this.dataNascimento = dataNascimento;
     }
 
