@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufscar.dc.dsw.domain.Locacao;
-import br.ufscar.dc.dsw.domain.Locadora;
 
 public class LocacaoDAO extends GenericDAO{
     public void insert(Locacao locacao){

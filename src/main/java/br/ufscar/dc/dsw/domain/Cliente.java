@@ -10,7 +10,7 @@ public class Cliente extends Usuario{
     private String dataNascimento;
 
     public Cliente(String cpf, String telefone, char sexo, String dataNascimento){
-        Usuario(email, senha, nome, "admin");
+        Usuario(email, senha, nome, "cliente");
         this.cpf = cpf;
         this.telefone = telefone;
         this.sexo = sexo;
