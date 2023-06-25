@@ -49,10 +49,10 @@ public class LocadoraDAO extends GenericDAO{
                 long id = resultSet.getLong("id");
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
-                String cnpj = resultSet.getString("cnpj");
                 String nome = resultSet.getString("nome");
+                String cnpj = resultSet.getString("cnpj");
                 String cidade = resultSet.getString("cidade");
-                Locadora locadora = new Locadora(id, email, senha, cnpj, nome, cidade);
+                Locadora locadora = new Locadora(id, email, senha, nome, cnpj, cidade);
                 listaLocadoras.add(locadora);
             }
 
@@ -85,16 +85,15 @@ public class LocadoraDAO extends GenericDAO{
 
     public void update(Locadora locadora){
 
-        String sql = "UPDATE Locadora SET email = ?, senha = ?, cnpj = ?, nome = ?, cidade = ? WHERE id = ?";
+        String sql = "UPDATE Locadora SET email = ?, senha = ?, nome = ?, cnpj = ?, cidade = ? WHERE id = ?";
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            statement = conn.prepareStatement(sql);
             statement.setString(1, locadora.getEmail());
             statement.setString(2, locadora.getSenha());
-            statement.setString(3, locadora.getCnpj());
-            statement.setString(4, locadora.getNome());
+            statement.setString(3, locadora.getNome());
+            statement.setString(4, locadora.getCnpj());
             statement.setString(5, locadora.getCidade());
             statement.executeUpdate();
 

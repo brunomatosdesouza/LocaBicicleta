@@ -1,16 +1,14 @@
 package br.ufscar.dc.dsw.domain;
 
-import java.util.Date;
-
 public class Cliente extends Usuario{
 
     private String cpf;
     private String telefone;
-    private char sexo;
+    private String sexo;
     private String dataNascimento;
 
-    public Cliente(String cpf, String telefone, char sexo, String dataNascimento){
-        Usuario(email, senha, nome, "cliente");
+    public Cliente(Long id, String email, String senha, String nome, String cpf, String telefone, String sexo, String dataNascimento){
+        super(id, email, senha, nome, "cliente");
         this.cpf = cpf;
         this.telefone = telefone;
         this.sexo = sexo;
@@ -33,11 +31,11 @@ public class Cliente extends Usuario{
         this.telefone = telefone;
     }
 
-    public char getSexo(){
+    public String getSexo(){
         return sexo;
     }
 
-    public void setSexo(char sexo){
+    public void setSexo(String sexo){
         this.sexo = sexo;
     }
 
