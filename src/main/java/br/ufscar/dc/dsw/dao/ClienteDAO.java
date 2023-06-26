@@ -13,7 +13,7 @@ import br.ufscar.dc.dsw.domain.Cliente;
 public class ClienteDAO extends GenericDAO {
     public void insert (Cliente cliente){
 
-        String sql = "INSERT INTO Cliente (email, senha, nome, cpf, telefone, sexo, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (email, senha, nome, papel, cpf, telefone, sexo, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try{
             Connection conn = this.getConnection();
@@ -24,10 +24,11 @@ public class ClienteDAO extends GenericDAO {
             statement.setString(1, cliente.getEmail());
             statement.setString(2, cliente.getSenha());
             statement.setString(3, cliente.getNome());
-            statement.setString(4, cliente.getCpf());
-            statement.setString(5, cliente.getTelefone());
-            statement.setString(6, cliente.getSexo());
-            statement.setString(7, cliente.getDataNascimento());
+            statement.setString(4, cliente.getPapel());
+            statement.setString(5, cliente.getCpf());
+            statement.setString(6, cliente.getTelefone());
+            statement.setString(7, cliente.getSexo());
+            statement.setString(8, cliente.getDataNascimento());
 
             statement.close();
             conn.close();
@@ -54,12 +55,13 @@ public class ClienteDAO extends GenericDAO {
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String nome = resultSet.getString("nome");
+                String papel = resultSet.getString("papel");
                 String cpf = resultSet.getString("cpf");
                 String telefone = resultSet.getString("telefone");
                 String sexo = resultSet.getString("sexo");
                 String dataNascimento = resultSet.getString("dataNascimento");
 
-                Cliente cliente = new Cliente(id, email, senha, nome, cpf, telefone, sexo, dataNascimento);
+                Cliente cliente = new Cliente(id, email, senha, nome, papel, cpf, telefone, sexo, dataNascimento);
 
                 listaClientes.add(cliente);
 
