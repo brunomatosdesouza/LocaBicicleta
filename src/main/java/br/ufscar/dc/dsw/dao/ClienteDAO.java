@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Usuario;
 
 public class ClienteDAO extends GenericDAO {
     public void insert (Cliente cliente){
 
-        String sql = "INSERT INTO Cliente (email, senha, nome, cpf, telefone, sexo, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (email, senha, nome, papel, cpf, telefone, sexo, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try{
             Connection conn = this.getConnection();
@@ -24,10 +25,13 @@ public class ClienteDAO extends GenericDAO {
             statement.setString(1, cliente.getEmail());
             statement.setString(2, cliente.getSenha());
             statement.setString(3, cliente.getNome());
-            statement.setString(4, cliente.getCpf());
-            statement.setString(5, cliente.getTelefone());
-            statement.setString(6, cliente.getSexo());
-            statement.setString(7, cliente.getDataNascimento());
+            statement.setString(4, cliente.getPapel());
+            statement.setString(5, cliente.getCpf());
+            statement.setString(6, cliente.getTelefone());
+            statement.setString(7, cliente.getSexo());
+            statement.setString(8, cliente.getDataNascimento());
+            statement.executeUpdate();
+
 
             statement.close();
             conn.close();
@@ -54,12 +58,13 @@ public class ClienteDAO extends GenericDAO {
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String nome = resultSet.getString("nome");
+                String papel = resultSet.getString("papel");
                 String cpf = resultSet.getString("cpf");
                 String telefone = resultSet.getString("telefone");
                 String sexo = resultSet.getString("sexo");
                 String dataNascimento = resultSet.getString("dataNascimento");
 
-                Cliente cliente = new Cliente(id, email, senha, nome, cpf, telefone, sexo, dataNascimento);
+                Cliente cliente = new Cliente(id, email, senha, nome, papel, cpf, telefone, sexo, dataNascimento);
 
                 listaClientes.add(cliente);
 
@@ -94,7 +99,7 @@ public class ClienteDAO extends GenericDAO {
 
     public void update(Cliente cliente){
 
-        String sql = "UPDATE Cliente SET email = ?, senha = ?, nome = ?, cpf = ?, telefone = ?, sexo = ?, dataNascimento = ? WHERE id = ?";
+        String sql = "UPDATE Cliente SET email = ?, senha = ?, nome = ?, papel = ?, cpf = ?, telefone = ?, sexo = ?, dataNascimento = ? WHERE id = ?";
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -102,10 +107,12 @@ public class ClienteDAO extends GenericDAO {
             statement.setString(1, cliente.getEmail());
             statement.setString(2, cliente.getSenha());
             statement.setString(3, cliente.getNome());
-            statement.setString(4, cliente.getCpf());
-            statement.setString(5, cliente.getTelefone());
-            statement.setString(6, cliente.getSexo());
-            statement.setString(7, cliente.getDataNascimento());
+            statement.setString(4, cliente.getPapel());
+            statement.setString(5, cliente.getCpf());
+            statement.setString(6, cliente.getTelefone());
+            statement.setString(7, cliente.getSexo());
+            statement.setString(8, cliente.getDataNascimento());
+            statement.setLong(9, cliente.getId());
             statement.executeUpdate();
 
             statement.close();
@@ -114,5 +121,39 @@ public class ClienteDAO extends GenericDAO {
         catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public Cliente get(Long id) {
+        Cliente cliente = null;
+
+        String sql = "SELECT * from Usuario WHERE id = ?";
+
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String nome = resultSet.getString("nome");                
+                String papel = resultSet.getString("papel");
+                String cpf = resultSet.getString("cpf");
+                String telefone = resultSet.getString("telefone");
+                String sexo = resultSet.getString("sexo");
+                String dataNascimento = resultSet.getString("dataNascimento");
+
+                cliente = new Cliente(id, email, nome, senha, papel, cpf, telefone, sexo, dataNascimento);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cliente;
     }
 }

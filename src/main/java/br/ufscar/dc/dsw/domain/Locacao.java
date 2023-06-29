@@ -10,19 +10,25 @@ public class Locacao {
     private String cpf;
     private String cnpj;
     private String data;
+    private Cliente cliente;
+    //private Locadora locadora;
 
-    public Locacao(Long id, String cpf, String cnpj, String data) {
+    public Locacao(Long id, String cpf, String cnpj, String data, Cliente cliente/* , Locadora locadora*/) {
         this.id = id;
         this.cpf = cpf;
         this.cnpj = cnpj;
         this.data = data;
+        this.cliente = cliente;
+        //this.locadora = locadora;
     }
 
-    public Locacao(String cpf, String cnpj, String data) {
+    public Locacao(String cpf, String cnpj, String data, Cliente cliente/*, Locadora locadora*/) {
         super();
         this.cpf = cpf;
         this.cnpj = cnpj;
         this.data = data;
+        this.cliente = cliente;
+        //this.locadora = locadora;
     }
 
     public Long getId(){
@@ -58,4 +64,19 @@ public class Locacao {
         this.data = data;
     }
 
+    public Cliente getCliente(){
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
+    /*
+    public Locadora getLocadora(){
+        return locadora;
+    }
+
+    public void setLocadora(Locadora locadora){
+        this.locadora = locadora;
+    }*/
 }
