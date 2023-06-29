@@ -13,7 +13,7 @@ import br.ufscar.dc.dsw.domain.Locadora;
 public class LocadoraDAO extends GenericDAO{
     public void insert(Locadora locadora){
 
-        String sql = "INSERT INTO Locadora (email, senha, cnpj, nome, cidade) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Locadora (email, senha, nome, cnpj, cidade) VALUES (?, ?, ?, ?, ?)";
 
         try{
             Connection conn = this.getConnection();
@@ -22,8 +22,8 @@ public class LocadoraDAO extends GenericDAO{
             statement = conn.prepareStatement(sql);
             statement.setString(1, locadora.getEmail());
             statement.setString(2, locadora.getSenha());
-            statement.setString(3, locadora.getCnpj());
-            statement.setString(4, locadora.getNome());
+            statement.setString(3, locadora.getNome());
+            statement.setString(4, locadora.getCnpj());
             statement.setString(5, locadora.getCidade());
 
             statement.close();

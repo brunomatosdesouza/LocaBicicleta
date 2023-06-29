@@ -15,7 +15,7 @@ public class ClienteDAO extends GenericDAO {
     public void insert (Cliente cliente){
 
         String sql = "INSERT INTO Cliente (email, senha, nome, papel, cpf, telefone, sexo, dataNascimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
+        
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
